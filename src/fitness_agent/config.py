@@ -2,7 +2,12 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+import truststore
 from dotenv import load_dotenv
+
+# Trust the certificates installed in the operating system, so downloads and API calls
+# also work on office networks that inspect HTTPS traffic.
+truststore.inject_into_ssl()
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(PROJECT_ROOT / ".env")

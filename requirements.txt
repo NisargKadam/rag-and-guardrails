@@ -6,4 +6,5 @@ pypdf>=5.0
 scikit-learn>=1.5
 python-dotenv>=1.0
 rich>=13.0
+truststore>=0.10
 pytest>=8.0

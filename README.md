@@ -223,6 +223,7 @@ The tests run offline: they replace the LLM and the database with simple fakes.
 | `ModuleNotFoundError` for any other package | Activate the virtual environment and run `pip install -r requirements.txt` again |
 | `No PDF text found` | Put text-based PDFs in `data/pdfs/` |
 | Search returns nothing | Run `python scripts/01_ingest.py` first |
+| `SSL: CERTIFICATE_VERIFY_FAILED` | Run `git pull` and `pip install -r requirements.txt` again. If it still fails, your office network is blocking the download: try a home network or mobile hotspot |
 | OpenAI authentication error | Check `OPENAI_API_KEY` in `.env` |
 | Ollama connection error | Start the Ollama app and check you pulled the model named in `.env` |
 | ChromaDB install fails on Windows | Install the [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) and retry |
