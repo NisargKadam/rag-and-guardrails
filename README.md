@@ -75,7 +75,8 @@ Then open `.env` and pick **one** option:
 ```
 LLM_PROVIDER=openai
 OPENAI_API_KEY=sk-...
-OPENAI_MODEL=gpt-5-nano
+OPENAI_AGENT_MODEL=gpt-5.1
+OPENAI_GUARDRAIL_MODEL=gpt-5.4-nano
 ```
 
 **Option B: Ollama** (free, runs on your laptop)
@@ -86,8 +87,11 @@ OPENAI_MODEL=gpt-5-nano
 
 ```
 LLM_PROVIDER=ollama
-OLLAMA_MODEL=gemma3:4b
+OLLAMA_AGENT_MODEL=gemma3:4b
+OLLAMA_GUARDRAIL_MODEL=gemma3:4b
 ```
+
+The **agent model** reforms the query and writes the answer. The **guardrail model** is the LLM judge in the output guardrail; it can be smaller and cheaper because its job is a simple check.
 
 Embeddings always run locally through ChromaDB's built-in model, so ingestion needs no API key. The model (about 80 MB) downloads automatically the first time.
 
@@ -196,7 +200,7 @@ data/
 scripts/                    the four lessons
 src/fitness_agent/
   config.py                 settings read from .env
-  llm.py                    picks OpenAI or Ollama
+  llm.py                    agent model and guardrail model (OpenAI or Ollama)
   rag/                      ingestion and search pipelines
   guardrails/               regex, NLU and output guardrails
   agent/                    LangGraph state, nodes and graph

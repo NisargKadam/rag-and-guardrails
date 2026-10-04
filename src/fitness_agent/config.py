@@ -11,8 +11,10 @@ load_dotenv(PROJECT_ROOT / ".env")
 @dataclass(frozen=True)
 class Settings:
     llm_provider: str = os.getenv("LLM_PROVIDER", "openai").lower()
-    openai_model: str = os.getenv("OPENAI_MODEL", "gpt-5-nano")
-    ollama_model: str = os.getenv("OLLAMA_MODEL", "gemma3:4b")
+    openai_agent_model: str = os.getenv("OPENAI_AGENT_MODEL", "gpt-5.1")
+    openai_guardrail_model: str = os.getenv("OPENAI_GUARDRAIL_MODEL", "gpt-5.4-nano")
+    ollama_agent_model: str = os.getenv("OLLAMA_AGENT_MODEL", "gemma3:4b")
+    ollama_guardrail_model: str = os.getenv("OLLAMA_GUARDRAIL_MODEL", "gemma3:4b")
 
     chunk_size: int = int(os.getenv("CHUNK_SIZE", "200"))
     chunk_overlap: int = int(os.getenv("CHUNK_OVERLAP", "40"))

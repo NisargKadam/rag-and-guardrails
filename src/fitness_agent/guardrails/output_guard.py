@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 from fitness_agent.guardrails.result import GuardrailResult
-from fitness_agent.llm import get_chat_model
+from fitness_agent.llm import get_guardrail_model
 
 GUARD_NAME = "output"
 
@@ -27,6 +27,6 @@ class Verdict(BaseModel):
 
 
 def check_output(question: str, context: str, answer: str) -> GuardrailResult:
-    judge = get_chat_model().with_structured_output(Verdict)
+    judge = get_guardrail_model().with_structured_output(Verdict)
     verdict = judge.invoke(JUDGE_PROMPT.format(context=context, question=question, answer=answer))
     return GuardrailResult(GUARD_NAME, verdict.grounded and verdict.safe, verdict.reason)
