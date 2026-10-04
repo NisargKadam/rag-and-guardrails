@@ -1,3 +1,4 @@
+import os
 from functools import lru_cache
 
 from fitness_agent.config import settings
@@ -11,6 +12,9 @@ def build_chat_model(openai_model: str, ollama_model: str):
 
     if settings.llm_provider == "openai":
         from langchain_openai import ChatOpenAI
+
+        if not os.getenv("OPENAI_API_KEY"):
+            raise RuntimeError("OPENAI_API_KEY is missing. Copy .env.example to .env and add your key.")
 
         return ChatOpenAI(model=openai_model)
 
