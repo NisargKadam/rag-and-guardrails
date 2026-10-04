@@ -1,5 +1,11 @@
 """Ingestion pipeline: PDFs -> pages -> chunks -> embeddings -> ChromaDB."""
 
+import sys
+from pathlib import Path
+
+# Make the fitness_agent package in src/ importable without installing the project.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from collections import Counter
 
 from rich.console import Console

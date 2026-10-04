@@ -219,7 +219,8 @@ The tests run offline: they replace the LLM and the database with simple fakes.
 
 | Problem | Fix |
 | --- | --- |
-| `ModuleNotFoundError: fitness_agent` | Activate the virtual environment and run `pip install -r requirements.txt` again |
+| `ModuleNotFoundError: fitness_agent` | Run `git pull` to get the latest code, then run the script from the project folder |
+| `ModuleNotFoundError` for any other package | Activate the virtual environment and run `pip install -r requirements.txt` again |
 | `No PDF text found` | Put text-based PDFs in `data/pdfs/` |
 | Search returns nothing | Run `python scripts/01_ingest.py` first |
 | OpenAI authentication error | Check `OPENAI_API_KEY` in `.env` |

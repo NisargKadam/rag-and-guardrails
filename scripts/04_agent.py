@@ -1,5 +1,11 @@
 """The full LangGraph agent: guardrails + RAG, with a trace of every node."""
 
+import sys
+from pathlib import Path
+
+# Make the fitness_agent package in src/ importable without installing the project.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 import argparse
 
 from rich.console import Console

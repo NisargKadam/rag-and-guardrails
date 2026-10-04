@@ -1,5 +1,11 @@
 """Search pipeline: question -> reformed query -> top-K chunks -> context."""
 
+import sys
+from pathlib import Path
+
+# Make the fitness_agent package in src/ importable without installing the project.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 import argparse
 
 from rich.console import Console

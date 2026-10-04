@@ -1,8 +1,11 @@
+import logging
 from pathlib import Path
 
 from pypdf import PdfReader
 
 from fitness_agent.rag.models import Page
+
+logging.getLogger("pypdf").setLevel(logging.ERROR)
 
 
 def load_pdf(path: Path) -> list[Page]:
