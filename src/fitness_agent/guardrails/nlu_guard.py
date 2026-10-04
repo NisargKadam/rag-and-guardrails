@@ -4,7 +4,7 @@ from pathlib import Path
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.pipeline import Pipeline, make_pipeline, make_union
 
 from fitness_agent.config import settings
 from fitness_agent.guardrails.result import GuardrailResult
@@ -20,10 +20,12 @@ def load_training_data(path: Path) -> tuple[list[str], list[str]]:
 
 
 def train_classifier(texts: list[str], labels: list[str]) -> Pipeline:
-    classifier = make_pipeline(
+    # Word features capture meaning; character features keep typos like "protien" recognisable.
+    features = make_union(
         TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True),
-        LogisticRegression(C=10, max_iter=1000),
+        TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 5), sublinear_tf=True),
     )
+    classifier = make_pipeline(features, LogisticRegression(C=10, max_iter=1000))
     classifier.fit(texts, labels)
     return classifier
 
