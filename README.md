@@ -36,8 +36,8 @@ You need **Python 3.10 or newer** and **git**.
 ### 1. Get the code
 
 ```bash
-git clone <repo-url>
-cd <repo-folder>
+git clone https://github.com/NisargKadam/rag-and-guardrails.git
+cd rag-and-guardrails
 ```
 
 ### 2. Create a virtual environment and install packages
